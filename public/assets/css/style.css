@@ -1,0 +1,15 @@
+html {
+  background-color: black;
+}
+
+.jumbotron {
+  background-image: url("../images/nyc.jpeg");
+  background-size: cover;
+  background-position-x: 370px;
+  background-position-y: -440px;
+}
+
+#saved {
+  color: #222222;
+  float: right;
+}

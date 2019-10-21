@@ -1,0 +1,28 @@
+{
+  "name": "allthenews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davimello/allthenews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davimello/allthenews/issues"
+  },
+  "homepage": "https://github.com/davimello/allthenews#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "exphbs": "^1.2.0",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.7.5",
+    "morgan": "^1.9.1"
+  }
+}
