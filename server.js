@@ -11,11 +11,14 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ layout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds137498.mlab.com:37498/heroku_4168v2ff";
+mongoose.connect(
+    process.env.MONGODB_URI ||
+    "mongodb://user:password1@ds137498.mlab.com:37498/heroku_4168v2ff",
 
-// Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
-require("./routes/routes.js")(app);
+{
+    useMongoClient: true
+}
+);
 
 app.listen(3000, function () {
     console.log("App running on port 3000!");
