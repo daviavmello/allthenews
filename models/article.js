@@ -24,10 +24,8 @@ let ArticleSchema = new Schema({
         type: Boolean,
         default: false
     },
-    
+
     article: String
-
-
 });
 
 let Article = mongoose.model("Article", ArticleSchema);

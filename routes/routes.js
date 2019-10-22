@@ -25,9 +25,6 @@ module.exports = function (app) {
             });
             res.send("Scrape Complete");
         })
-
-        res.redirect("/");
-        
     });
 
     app.get("/", function (req, res) {
@@ -58,7 +55,7 @@ module.exports = function (app) {
     });
 
     app.get("/comments", function (req, res) {
-        db.Comment.find({}, function (error, data) {
+        db.Note.find({}, function (error, data) {
             console.log(data)
             res.json(data);
         });
@@ -68,8 +65,8 @@ module.exports = function (app) {
         db.Article.deleteMany({}, function (err, del) {
         });
 
-        // db.Comment.deleteMany({}, function (err, del) {
-        // });
+        db.Note.deleteMany({}, function (err, del) {
+        });
         console.log("Delete")
         res.send("Collection Dropped")
     });
@@ -91,14 +88,14 @@ module.exports = function (app) {
             });
     });
 
-    app.post("/articles/:id", function (req, res) {
+    app.post("/notes", function (req, res) {
         console.log(req.body);
-        db.Comment.create(req.body)
+        db.Note.create(req.body)
             .then(function (dbComment) {
-                return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true });
+                return db.Article.findOneAndUpdate({ _id: req.params.id },
+                { $push: { comment: dbComment._id }}, { new: true });
             })
             .then(function (dbArticle) {
-                nt
                 res.json(dbArticle);
             })
             .catch(function (err) {
@@ -118,7 +115,7 @@ module.exports = function (app) {
     });
 
     app.delete("/delete-comment/:id", function (req, res) {
-        db.Comment.findByIdAndRemove(req.params.id, (err, comment) => {
+        db.Note.findByIdAndRemove(req.params.id, (err, comment) => {
             if (err) return res.status(500).send(err);
             return res.status(200).send();
         });

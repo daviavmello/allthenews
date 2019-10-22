@@ -1,5 +1,5 @@
 html {
-  background-color: black;
+  background-color: #fff;
 }
 
 .jumbotron {
@@ -9,7 +9,23 @@ html {
   background-position-y: -440px;
 }
 
-#saved {
-  color: #222222;
-  float: right;
+#h1 {
+  text-align: center;
+}
+
+#h2 {
+  text-align: center;
+}
+
+a {
+  color: cadetblue;
+}
+
+a:hover {
+  text-decoration: none;
+  color: darkslategrey;
+}
+
+#h1-saved {
+  padding-left: 20px;
 }

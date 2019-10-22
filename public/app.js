@@ -1,43 +1,24 @@
 $( () => {
 
-//   let displayArticles = articles => {
-//       articles.forEach((article) => {
-
-//           let div = $("<div>").attr("class", "card").css("width", "75rem").append(
-//               $("<div>").attr("class", "card-body").append(
-
-//                   $("<a>").attr("href", "http://nytimes.com" + article.link).attr("target", "_blank").html("<h3>" + article.title + "</h3"),
-//                   $("<p>").attr("class", "card-text").text(article.snip),
-//                   $("<button>").attr("class", "btn btn-success saved").attr("id", article._id).text("Save Article")
-//               )
-//           );
-//           $("#display").append(div);
-//       });
-
-//   };
-//   displayArticles();
-
-  $("#home").on("click", event => {
+      $("#home").on("click", event => {
       event.preventDefault();
       $.get("/", () => {
           console.log("Home")
       })
   });
 
+
   $("#scrape").on("click", event => {
       event.preventDefault();
       $.getJSON("/scrape", () => {
           console.log("Scrape")
       });
-      $.getJSON("/articles", (data) => {
-          displayArticles(data);
-      });
+      location.reload();
   });
 
   $("#clear").on("click", event => {
       event.preventDefault();
       $.getJSON("/drop", () => {
-
       });
       console.log("collection dropped");
       $("#display").empty();
@@ -46,7 +27,7 @@ $( () => {
   $(document).on("click", ".saved", function () {
       let id = $(this).attr("id");
       console.log("Article ID: " + id);
-
+      $(this).parents(".card").remove();
       $.ajax({
           type: "PUT",
           url: "/saved/" + id,
@@ -57,8 +38,8 @@ $( () => {
 });
 
 $(".deleteArticle").on("click", function () {
-  console.log("deleteButton clicked");
-  let id = $(this).attr('id');
+  console.log("Delete button");
+  let id = $(this).attr("id");
   $.ajax("/delete-Article/" + id, {
       type: "DELETE"
   }).then(
@@ -70,30 +51,19 @@ $(".deleteArticle").on("click", function () {
 
 $(".saveNote").on("click", function () {
 
-  let id = $(this).attr('data-id');
-  console.log("clicked" + id);
+  let id = $(this).attr("id");
+  console.log("clicked");
   console.log($(".userNote").val().trim());
   $.ajax({
-      url: "/articles/" + id,
+      url: "/notes",
       method: "POST",
       data: {
           body: $(".userNote").val().trim()
-      }
-  }).then(
+      }})
+      .then(
       function (data) {
           console.log(data);
-      });
-  $(".userNote").val("");
-
-  $.ajax({
-      method: "GET",
-      url: "/articles/" + id
-  })
-
-      .then(function (data) {
-          console.log(data);
-          // The title of the article
-          displayArticles(data);
+          $(".userNote").val("");
       });
   $(".savedNote").empty();
 });
@@ -118,9 +88,10 @@ $(document).on("click", "button.delete", function (event) {
 
   event.preventDefault();
   console.log("clicked delete")
-  let id = $(this).attr('data-id');
+  let id = $(this).attr('id');
+  console.log(id)
   $.ajax({
-      url: "/delete-Note/" + id,
+      url: "/delete-Article/" + id,
       method: "DELETE",
   }).then(
       function (data) {
