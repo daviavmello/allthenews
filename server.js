@@ -11,7 +11,7 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ layout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://davi:050994.m@ds137488.mlab.com:37488/heroku_0wpwl8cn";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds137498.mlab.com:37498/heroku_4168v2ff";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI);
