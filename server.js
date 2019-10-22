@@ -11,7 +11,7 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ layout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/allthenews-scrapper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/morning-atoll-55211";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI);
