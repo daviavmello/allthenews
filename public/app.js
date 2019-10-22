@@ -85,7 +85,6 @@ $(".addNote").on("click", function () {
 });
 
 $(document).on("click", "button.delete", function (event) {
-
   event.preventDefault();
   console.log("clicked delete")
   let id = $(this).attr('id');
