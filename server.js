@@ -15,7 +15,7 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ layout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/allthenews-scrapper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds127644.mlab.com:27644/heroku_n6c2rpls";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
