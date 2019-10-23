@@ -7,7 +7,6 @@ $( () => {
       })
   });
 
-
   $("#scrape").on("click", event => {
       event.preventDefault();
       $.getJSON("/scrape", () => {
